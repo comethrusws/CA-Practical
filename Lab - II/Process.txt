@@ -1,0 +1,58 @@
+Binary Addition Function:
+void addBinary4Bit(char binary1[], char binary2[], char result[]) {
+    int carry = 0;
+
+    for (int i = 3; i >= 0; i--) {
+        int bit1 = binary1[i] - '0';
+        int bit2 = binary2[i] - '0';
+
+        int sum = bit1 ^ bit2 ^ carry;
+
+        result[i] = sum + '0';
+
+        carry = (bit1 & bit2) | (bit2 & carry) | (carry & bit1);
+    }
+
+    if (carry)
+        result[0] = '1';
+}
+
+    It initializes a variable carry to 0 to keep track of any carry that may occur during addition.
+    It then iterates through each bit of the binary numbers from the least significant bit (index 3) to the most significant bit (index 0).
+    Inside the loop, it performs the XOR (^) operation to compute the sum of the current bits along with the carry from the previous addition.
+    The result is stored in the result array, and the carry for the next iteration is calculated using bitwise AND and OR operations.
+    After the loop, if there is a carry remaining, the most significant bit of the result is set to '1'.
+
+
+
+...........................................................................
+
+Bit Extraction:
+
+c
+
+int bit1 = binaryNum1[i] - '0';
+int bit2 = binaryNum2[i] - '0';
+
+Extract individual bits from the binary numbers by converting characters to integers.
+
+Subtraction:
+
+c
+
+int diff = bit1 - bit2 - borrow;
+
+Calculate the difference between the corresponding bits of binaryNum1 and binaryNum2 along with any borrow.
+
+Borrow Handling:
+
+c
+
+if (diff < 0) {
+    diff += 2;
+    borrow = 1;
+} else {
+    borrow = 0;
+}
+
+If the difference is negative, add 2 to it (binary equivalent of borrowing 1). Update the borrow accordingly.
